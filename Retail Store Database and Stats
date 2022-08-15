@@ -1,0 +1,29 @@
+--Create a retail store database
+
+CREATE TABLE store_inventory (id INTEGER PRIMARY KEY, name TEXT, quantity INTEGER, color TEXT, size TEXT, price INTEGER);
+
+INSERT INTO store_inventory VALUES(1, "T-Shirt", 3, "black", "Small", 15);
+INSERT INTO store_inventory VALUES(2, "T-Shirt", 4, "black", "Medium", 16);
+INSERT INTO store_inventory VALUES(3, "T-Shirt", 3, "black", "Large", 17);
+INSERT INTO store_inventory VALUES(4, "T-Shirt", 4, "black", "XL", 18);
+INSERT INTO store_inventory VALUES(5, "T-Shirt", 4, "black", "2XL", 19);
+INSERT INTO store_inventory VALUES(6, "T-Shirt", 4, "black", "3XL", 19.5);
+INSERT INTO store_inventory VALUES(7, "T-Shirt", 4, "black", "4XL", 20);
+INSERT INTO store_inventory VALUES(8, "Shorts", 4, "grey", "Small", 10);
+INSERT INTO store_inventory VALUES(9, "Shorts", 4, "grey", "Medium", 10.5);
+INSERT INTO store_inventory VALUES(10, "Shorts", 3, "grey", "Large", 11);
+INSERT INTO store_inventory VALUES(11, "Shorts", 4, "grey", "XL", 11.5);
+INSERT INTO store_inventory VALUES(12, "Shorts", 4, "grey", "2XL", 12);
+INSERT INTO store_inventory VALUES(13, "Shorts", 4, "grey", "3XL", 12.5);
+INSERT INTO store_inventory VALUES(14, "Shorts", 4, "grey", "4XL", 13);
+INSERT INTO store_inventory VALUES(15, "Socks", 4, "tan", "Medium", 5);
+INSERT INTO store_inventory VALUES(16, "Socks", 3, "tan", "Large", 6);
+INSERT INTO store_inventory VALUES(17, "Socks", 4, "tan", "XL", 7);
+
+--display the database ordered by price
+SELECT * FROM store_inventory 
+ORDER BY price desc;
+
+--what quantities are in stock of each item?
+SELECT size, SUM(quantity) FROM store_inventory 
+GROUP BY size ORDER BY SUM(quantity);
