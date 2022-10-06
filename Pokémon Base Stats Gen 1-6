@@ -816,46 +816,66 @@ INSERT INTO pokemon(Number,Name,Type_1,Type_2,Total,HP,Attack,Defense,Sp_Atk,Sp_
 
 SELECT * FROM pokemon;
 
-What is the max total base stat and which Pokémon has it?
+What is the maximum base stat total a Pokémon can have and which Pokémon has it?
 
 SELECT Number, Name, MAX(Total) AS Max_Total FROM pokemon;
 
+
+What is the minimum base stat total a Pokémon can have and which Pokémon has it?
+
 SELECT Number, Name, MIN(Total) AS Min_Total FROM pokemon;
 
+
+What is the aveage base stat total?
+
 SELECT AVG(Total) AS Avg_Total FROM pokemon;
+
+
+Which Pokémon have the average tolat base stat? (rounded)
 
 SELECT Number, Name, Total FROM pokemon 
     WHERE Total like 435;
 
+
+Which Pokémon have a base stat total above 660?
+
 SELECT Number, Name, Total FROM pokemon
     GROUP BY Name
-    HAVING Total > 690;
-    
+    HAVING Total > 660;
+
+Which Pokémon have water as their first type?
+
 SELECT Number, Name, Type_1, Type_2 FROM pokemon
     WHERE Type_1 = 'Water';
-    
+
+
+Which pokemon have a water/fairy dual type?
+
 SELECT Number, Name, Type_1, Type_2 FROM pokemon
     WHERE Type_1 = 'Water'
     AND Type_2 = 'Fairy';
 
+
+Categorize the base stat totals into 4 base stat total zones and figure out how many are in each zone.
+
 SELECT Name, Total,
     CASE 
-        WHEN Total > 660 THEN "Very High Base Stats"
-        WHEN Total > 540 THEN "High Base Stats"
-        WHEN Total > 420 THEN "Average Base Stats"
-        ELSE "Low Base Stats"
-    END as "Base_Stat_Zones"
+        WHEN Total > 660 THEN "Very High Base Stat Total"
+        WHEN Total > 540 THEN "High Base Stat Total"
+        WHEN Total > 420 THEN "Average Base Stat Total"
+        ELSE "Low Base Stat Total"
+    END as "Base_Stat_Total_Zones"
 FROM pokemon;
 
 SELECT COUNT(*),
     CASE 
-        WHEN Total > 660 THEN "Very High Base Stats"
-        WHEN Total > 540 THEN "High Base Stats"
-        WHEN Total > 420 THEN "Average Base Stats"
-        ELSE "Low Base Stats"
-    END as "Base_Stat_Zones"
+        WHEN Total > 660 THEN "Very High Base Stat Total"
+        WHEN Total > 540 THEN "High Base Stat Total"
+        WHEN Total > 420 THEN "Average Base Stat Total"
+        ELSE "Low Base Stat Total"
+    END as "Base_Stat_Total_Zones"
 FROM pokemon
-GROUP BY Base_Stat_Zones;
+GROUP BY Base_Stat_Total_Zones;
     
     
     
